@@ -1,0 +1,10 @@
+﻿<Window x:Class="Template_4335.Windows.Makhov_4335"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Makhov_4335" Height="300" Width="500">
+	<Grid>
+		<TextBlock Text="Изменения выполнил студент группы 4335 Махов Алексей"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               FontSize="30" TextWrapping="Wrap" FontStyle="Italic"/>
+	</Grid>
+</Window>

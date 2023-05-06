@@ -31,5 +31,37 @@ namespace Template_4333
             form.Show();
             this.Hide();
         }
+
+        private void Amir_Click(object sender, RoutedEventArgs e)
+        {
+            var form = new _4333_Gallyamov();
+            form.Show();
+            this.Hide();
+        }
+
+        private void Dina_Click(object sender, RoutedEventArgs e)
+        {
+            _4333_Sagitova sag = new _4333_Sagitova();
+            sag.Show();
+        }
+        private void _4333_Davliev(object sender, RoutedEventArgs e)
+        {
+            _4333_Davliev davliev = new _4333_Davliev();
+            davliev.Show();
+        }
+
+        private void dinarClick(object sender, RoutedEventArgs e)
+        {
+            var dinar = new _4333_Valiakhmetov();
+            dinar.Show();
+            this.Hide();
+        }
+
+        private void _4333_Ibragimov(object sender, RoutedEventArgs e)
+        {
+            _4333_Ibragimov ibragimov = new _4333_Ibragimov();
+            ibragimov.Show();
+            this.Hide();
+        }
     }
 }

@@ -56,7 +56,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="4333_Davliev.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="4333_Gallyamov.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="4333_Gibadulllina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="4333_Ibragimov.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="4333_Valiakhmetov.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="4333_Sagitova.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -64,8 +84,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="4333_Davliev.xaml.cs">
+      <DependentUpon>4333_Davliev.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="4333_Gallyamov.xaml.cs">
+      <DependentUpon>4333_Gallyamov.xaml</DependentUpon>
+    </Compile>
     <Compile Include="4333_Gibadulllina.xaml.cs">
       <DependentUpon>4333_Gibadulllina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="4333_Ibragimov.xaml.cs">
+      <DependentUpon>4333_Ibragimov.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="4333_Sagitova.xaml.cs">
+      <DependentUpon>4333_Sagitova.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="4333_Valiakhmetov.xaml.cs">
+      <DependentUpon>4333_Valiakhmetov.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

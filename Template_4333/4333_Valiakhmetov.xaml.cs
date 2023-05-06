@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Template_4337
+namespace Template_4333
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Interaction logic for _4333_Valiakhmetov.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class _4333_Valiakhmetov : Window
     {
-        public MainWindow()
+        public _4333_Valiakhmetov()
         {
             InitializeComponent();
-        }
-        
-        private void Khuzyakaev_4337_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new Khuzyakaev_4337();
-            window.Show();
         }
     }
 }
