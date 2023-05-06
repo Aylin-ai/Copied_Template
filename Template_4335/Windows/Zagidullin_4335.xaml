@@ -17,5 +17,11 @@
         <Button Content="Экспорт в Excel" Margin="10"
                 Click="Button_Click_1"/>
 
+        <Button Content="Импорт JSON данных" Margin="10"
+                Click="Button_Click_2"/>
+
+        <Button Content="Экспорт в Word" Margin="10"
+                Click="Button_Click_3"/>
+
     </StackPanel>
 </Window>

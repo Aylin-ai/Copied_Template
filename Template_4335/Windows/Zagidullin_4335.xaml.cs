@@ -1,16 +1,22 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Template_4335.Models;
+using System.IO;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using Newtonsoft.Json;
+using Microsoft.Office.Interop.Word;
+using Application = Microsoft.Office.Interop.Word.Application;
 
 namespace Template_4335.Windows
 {
     /// <summary>
     /// Логика взаимодействия для Zagidullin_4335.xaml
     /// </summary>
-    public partial class Zagidullin_4335 : Window
+    public partial class Zagidullin_4335 : System.Windows.Window
     {
         public Zagidullin_4335()
         {
@@ -47,7 +53,7 @@ namespace Template_4335.Windows
             {
                 for (int i = 1; i < _rows; i++)
                 {
-                    User user = new User() { Id = list[i, 1], Name = list[i, 0], Email = list[i, 8], Street = list[i, 5] };
+                    User user = new User() { Id = int.Parse(list[i, 1]), Name = list[i, 0], Email = list[i, 8], Street = list[i, 5] };
                     db.Users.Add(user);
                 }
                 db.SaveChanges();
@@ -141,6 +147,78 @@ namespace Template_4335.Windows
                 worksheet.Columns.AutoFit();
             }
             app.Visible = true;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            using (UserContext db = new UserContext())
+            {
+                var json = File.ReadAllText("D:\\Учеба\\4335\\2_семестр\\исрпо\\ЛР3\\Импорт\\3.json");
+                var clients = JsonConvert.DeserializeObject<List<User>>(json);
+
+                foreach (var client in clients)
+                {
+                    User dbClient = new User
+                    {
+                        Id = client.Id,
+                        CodeClient = client.CodeClient,
+                        Name = client.Name,
+                        Email = client.Email,
+                        Street = client.Street,
+                    };
+                    db.Users.Add(dbClient);
+                }
+                db.SaveChanges();
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            using (UserContext db = new UserContext())
+            {
+                // Группировка по улицам
+                var clientsByStreet = db.Users.GroupBy(c => c.Street);
+
+                var wordApp = new Application();
+                var document = wordApp.Documents.Add();
+
+                // Для каждой улицы создаем новую страницу и добавляем на нее список клиентов
+                foreach (var streetGroup in clientsByStreet)
+                {
+                    // Отсортировать клиентов по ФИО
+                    var sortedClients = streetGroup.OrderBy(c => c.Name);
+
+                    // Добавляем новую страницу
+                    document.Words.Last.InsertBreak(WdBreakType.wdPageBreak);
+
+                    // Добавляем заголовок с названием улицы
+                    document.Words.Last.Text = streetGroup.Key;
+                    document.Words.Last.set_Style(WdBuiltinStyle.wdStyleHeading1);
+
+                    // Добавляем таблицу со списком клиентов
+                    var clientsTable = document.Tables.Add(document.Words.Last, sortedClients.Count() + 1, 3);
+                    clientsTable.Borders.Enable = 1;
+
+                    // Заполняем заголовки столбцов таблицы
+                    clientsTable.Cell(1, 1).Range.Text = "ФИО";
+                    clientsTable.Cell(1, 2).Range.Text = "Код клиента";
+                    clientsTable.Cell(1, 3).Range.Text = "E-mail";
+
+                    // Заполняем ячейки таблицы данными клиентов
+                    for (int i = 0; i < sortedClients.Count(); i++)
+                    {
+                        var client = sortedClients.ElementAt(i);
+                        clientsTable.Cell(i + 2, 1).Range.Text = client.Name;
+                        clientsTable.Cell(i + 2, 2).Range.Text = client.CodeClient;
+                        clientsTable.Cell(i + 2, 3).Range.Text = client.Email;
+                    }
+                }
+
+                // Сохраняем документ
+                document.SaveAs("D:\\Учеба\\4335\\2_семестр\\исрпо\\ЛР3\\doc.docx");
+                document.Close();
+                wordApp.Quit();
+            }
         }
     }
 }
